@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/coinset/okex/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-12)
+
+
+### Bug Fixes
+
+* **public:** change return types of `fetchState` ([fbb350e](https://github.com/coinset/okex/commit/fbb350e109332dfbc66fc7607729f57c43e11274))
+
 # [1.0.0-beta.2](https://github.com/coinset/okex/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-12)
 
 
