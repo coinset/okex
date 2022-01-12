@@ -3,19 +3,36 @@ import { BASE_URL } from "./constants.ts";
 import { Exclusive, isString } from "../deps.ts";
 
 type IndexTickersOptions = Exclusive<{
+  /** Quote currency */
   quoteCcy: "USD" | "USDT" | "BTC";
 }, {
+  /** Index, e.g. BTC-USD */
   instId: string;
 }>;
 
 export type IndexTickersResponse = SuccessResponse<{
+  /** Index */
   instId: string;
+
+  /** Latest index price */
   idxPx: number;
+
+  /** Highest price in the past 24 hours */
   high24h: number;
+
+  /** Lowest price in the past 24 hours */
   low24h: number;
+
+  /** Open price in the past 24 hours */
   open24h: number;
+
+  /** Open price in the UTC 0 */
   sodUtc0: number;
+
+  /** Open price in the UTC 8 */
   sodUtc8: number;
+
+  /** Update time, Unix timestamp format in milliseconds */
   ts: number;
 }[]>;
 

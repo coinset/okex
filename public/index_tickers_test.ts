@@ -18,7 +18,7 @@ test("fetchIndexTickers", async () => {
     },
   );
 
-  await expect(fetchIndexTickers({ "instId": "BTC-USD" })).resolves.toEqual(
+  await expect(fetchIndexTickers({ instId: "BTC-USD" })).resolves.toEqual(
     {
       code: "0",
       msg: "",
