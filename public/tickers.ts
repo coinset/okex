@@ -17,7 +17,12 @@ export type TickersOptions = (
 
 export type TickersResponse = SuccessResponse<TickerData[]>;
 
-/**
+/** Retrieve the latest price snapshot, best bid/ask price, and trading volume in the last 24 hours.
+ * ```ts
+ * import { fetchTickers } from "https://deno.land/x/okex@$VERSION/mod.ts"
+ *
+ * await fetchTickers({ instType: "SPOT" })
+ * ```
  * @see https://www.okex.com/docs-v5/en/?c++#rest-api-market-data-get-tickers
  */
 export function fetchTickers(
