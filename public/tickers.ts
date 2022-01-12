@@ -1,6 +1,7 @@
-import { jsonFetch, Reviver, SuccessResponse } from "./_utils.ts";
+import { jsonFetch, SuccessResponse } from "./_utils.ts";
 import { BASE_URL } from "./constants.ts";
 import { isString } from "../deps.ts";
+import { reviver, TickerData } from "./ticker.ts";
 import type { InstType } from "./types.ts";
 
 export type TickersOptions = (
@@ -14,52 +15,7 @@ export type TickersOptions = (
   }
 );
 
-export type TickersResponse = SuccessResponse<{
-  instType: InstType;
-  instId: string;
-  last: number;
-  lastSz: number;
-  askPx: number;
-  askSz: number;
-  bidPx: number;
-  bidSz: number;
-  open24h: number;
-  high24h: number;
-  low24h: number;
-  volCcy24h: number;
-  vol24h: number;
-  sodUtc0: number;
-  sodUtc8: number;
-  ts: number;
-}[]>;
-
-const reviver: Reviver = (key, value) => {
-  if (
-    [
-      "last",
-      "lastSz",
-      "askPx",
-      "askSz",
-      "bidPx",
-      "bidSz",
-      "open24h",
-      "high24h",
-      "low24h",
-      "volCcy24h",
-      "vol24h",
-      "sodUtc0",
-      "sodUtc8",
-      "ts",
-    ]
-      .includes(
-        key,
-      ) &&
-    isString(value)
-  ) {
-    return Number(value);
-  }
-  return value;
-};
+export type TickersResponse = SuccessResponse<TickerData[]>;
 
 /**
  * @see https://www.okex.com/docs-v5/en/?c++#rest-api-market-data-get-tickers

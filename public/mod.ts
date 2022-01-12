@@ -4,3 +4,4 @@ export * from "./instruments.ts";
 export * from "./tickers.ts";
 export * from "./types.ts";
 export * from "./index_tickers.ts";
+export * from "./ticker.ts";
