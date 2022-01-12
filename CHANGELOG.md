@@ -1,3 +1,11 @@
+# [1.0.0-beta.2](https://github.com/coinset/okex/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-12)
+
+
+### Features
+
+* **public:** add `fetchIndexTickers` function ([4ca4bd3](https://github.com/coinset/okex/commit/4ca4bd3903e39f3704bc51a58087f7c0e76b4119))
+* **public:** add `fetchTicker` function ([df26f01](https://github.com/coinset/okex/commit/df26f0181e3d3e6a9de6339aca98d33345519e37))
+
 # 1.0.0-beta.1 (2022-01-12)
 
 
