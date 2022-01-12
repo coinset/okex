@@ -222,6 +222,34 @@ type InstrumentsResponse = {
 };
 ```
 
+### fetchUSD24hVolume
+
+The 24-hour trading volume is calculated on a rolling basis, using USD as the
+pricing unit.
+[Docs](https://www.okex.com/docs-v5/en/?c++#rest-api-market-data-get-24h-total-volume)
+
+example:
+
+```ts
+import { fetchUSD24hVolume } from "https://deno.land/x/okex@$VERSION/mod.ts";
+
+await fetchUSD24hVolume();
+```
+
+returns:
+
+```ts
+type USD24hVolumeResponse = {
+  code: "0";
+  msg: "";
+  data: {
+    volUsd: number;
+    volCny: number;
+    ts: number;
+  };
+};
+```
+
 ### fetchState
 
 Get event status of system upgrade.

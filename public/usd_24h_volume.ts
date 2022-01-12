@@ -3,8 +3,13 @@ import { BASE_URL } from "./constants.ts";
 import { isString } from "../deps.ts";
 
 type USD24hVolume = {
+  /** 24-hour total trading volume on the platform ，`"USD"` */
   volUsd: number;
+
+  /** 24-hour total trading volume on the platform ，`"CNY"` */
   volCny: number;
+
+  /** Data return time, Unix timestamp format in milliseconds, e.g. `1597026383085` */
   ts: number;
 };
 
@@ -17,7 +22,12 @@ const reviver: Reviver = (key, value) => {
   return value;
 };
 
-/**
+/** The 24-hour trading volume is calculated on a rolling basis, using USD as the pricing unit.
+ * ```ts
+ * import { fetchUSD24hVolume } from "https://deno.land/x/okex@$VERSION/mod.ts";
+ *
+ * await fetchUSD24hVolume()
+ * ```
  * @see https://www.okex.com/docs-v5/en/?c++#rest-api-market-data-get-24h-total-volume
  */
 export async function fetchUSD24hVolume(
