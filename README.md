@@ -160,6 +160,68 @@ type IndexTickersResponse = {
 };
 ```
 
+### fetchInstruments
+
+Retrieve a list of instruments with open contracts.
+[Docs](https://www.okex.com/docs-v5/en/?c++#rest-api-public-data-get-instruments)
+
+example:
+
+```ts
+import { fetchInstruments } from "https://deno.land/x/okex@$VERSION/mod.ts";
+await fetchInstruments({ instType: "SPOT" });
+```
+
+parameters:
+
+```ts
+type InstrumentsOptions =
+  & {
+    instId?: string | undefined;
+  }
+  & ({
+    instType: "SPOT" | "MARGIN" | "SWAP" | "FUTURES";
+    uly?: string | undefined;
+  } | {
+    instType: "OPTION";
+    uly: string;
+  });
+```
+
+returns:
+
+```ts
+type InstType = "SPOT" | "MARGIN" | "SWAP" | "FUTURES" | "OPTION";
+
+type InstrumentsResponse = {
+  code: "0";
+  msg: "";
+  data: {
+    instType: InstType;
+    instId: string;
+    uly: string;
+    category: string;
+    baseCcy: string;
+    quoteCcy: string;
+    settleCcy: string;
+    ctVal: number;
+    ctMult: number;
+    ctValCcy: string;
+    optType: "C" | "P" | "";
+    stk: string;
+    listTime: number;
+    expTime: number;
+    lever: number;
+    tickSz: number;
+    lotSz: number;
+    minSz: number;
+    ctType: "linear" | "inverse" | "";
+    alias: "this_week" | "next_week" | "quarter" | "next_quarter" | "";
+    state: "live" | "suspend" | "preopen" | "settlement";
+  }[];
+};
+```
+
 ### fetchState
 
 Get event status of system upgrade.
