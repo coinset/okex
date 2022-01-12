@@ -13,6 +13,32 @@ export type {
 } from "https://deno.land/x/cc_types/mod.ts";
 
 export { isNumber, isString } from "https://deno.land/x/isx/mod.ts";
-export { join } from "https://deno.land/std@0.120.0/path/mod.ts";
 
-export type StrictExtract<T, U extends T> = T extends U ? T : never;
+type Primitive = string | number | bigint | undefined | null | symbol | boolean;
+
+export type Exclusive<
+  T extends Record<PropertyKey, unknown>,
+  U extends Record<PropertyKey, unknown>,
+> =
+  | (
+    & T
+    & {
+      [k in keyof U]?: U[k] extends Record<PropertyKey, unknown>
+        ? T[k] extends Record<PropertyKey, unknown> ? Exclusive<U[k], T[k]>
+        : T[k]
+        : T[k] extends Record<PropertyKey, unknown> ? T[k]
+        : T[k] extends Primitive | unknown[] ? T[k]
+        : never;
+    }
+  )
+  | (
+    & U
+    & {
+      [k in keyof T]?: T[k] extends Record<PropertyKey, unknown>
+        ? U[k] extends Record<PropertyKey, unknown> ? Exclusive<T[k], U[k]>
+        : U[k]
+        : U[k] extends Record<PropertyKey, unknown> ? U[k]
+        : U[k] extends Primitive | unknown[] ? U[k]
+        : never;
+    }
+  );
