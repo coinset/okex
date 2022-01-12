@@ -159,3 +159,43 @@ type IndexTickersResponse = {
   }[];
 };
 ```
+
+### fetchState
+
+Get event status of system upgrade.
+[Docs](https://www.okex.com/docs-v5/en/?c++#rest-api-status)
+
+example:
+
+```ts
+import { fetchStatus } from "https://deno.land/x/okex@$VERSION/mod.ts";
+
+await fetchStatus();
+```
+
+parameters:
+
+```ts
+type StatusOptions = {
+  state?: "scheduled" | "ongoing" | "completed" | "canceled" | undefined;
+};
+```
+
+returns:
+
+```ts
+type StatusResponse = {
+  code: "0";
+  msg: "";
+  data: {
+    title: string;
+    state: string;
+    begin: number;
+    end: number;
+    href: string;
+    serviceType: "0" | "1" | "2" | "3" | "4" | "5";
+    system: "classic" | "unified";
+    scheDesc: string;
+  }[];
+};
+```
